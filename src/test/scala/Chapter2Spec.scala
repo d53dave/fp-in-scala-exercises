@@ -43,4 +43,21 @@ class Chapter2Spec extends Specification {
       isSorted(arr, (a: Int, b: Int) => a < b ) mustEqual false
     }
   }
+
+  "Currying a function should" >> {
+    import chapter2.exercise2_3.curry
+
+    def concatStrInt(a: String, b: Int) : String = {
+      a + b.toString
+    }
+
+    "create a partially applied function" >> {
+      val curried = curry(concatStrInt)
+      curried("4") must beAnInstanceOf[Function[Int, String]]
+    }
+
+    "return the correct result when fully applied" >> {
+      curry(concatStrInt)("4")(2) mustEqual "42"
+    }
+  }
 }

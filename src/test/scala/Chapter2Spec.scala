@@ -60,4 +60,21 @@ class Chapter2Spec extends Specification {
       curry(concatStrInt)("4")(2) mustEqual "42"
     }
   }
+
+  "Uncurrying a function should" >> {
+    import chapter2.exercise2_4.uncurry
+
+    def curried: String => Int => String = (a: String) => (b: Int) => a + b.toString
+
+    "create a function that takes all it's params at once" >> {
+
+      val uncurried = uncurry(curried)
+
+      uncurried must beAnInstanceOf[Function2[String, Int, String]]
+    }
+
+    "return the correct result when uncurried" >> {
+      uncurry(curried)("4", 2) mustEqual "42"
+    }
+  }
 }

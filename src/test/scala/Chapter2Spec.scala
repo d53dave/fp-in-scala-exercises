@@ -77,4 +77,16 @@ class Chapter2Spec extends Specification {
       uncurry(curried)("4", 2) mustEqual "42"
     }
   }
+
+  "Compose should" >> {
+    import chapter2.exercise2_5.compose
+    "compose correctly" >> {
+      def onlyUpperCase(s: String) =  s.toCharArray.filter(_.isUpper)
+      def charArrLength(s: Array[Char]) = s.size
+
+      val numUpper = compose(charArrLength, onlyUpperCase)
+
+      numUpper("Hello World") mustEqual 2
+    }
+  }
 }

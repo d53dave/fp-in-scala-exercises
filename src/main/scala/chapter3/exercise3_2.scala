@@ -10,7 +10,7 @@ object exercise3_2 {
 
   def tail[A](l: List[A]): List[A] = l match {
     case Cons(_, a) => a
-    case _ => Nil
+    case _ => throw new UnsupportedOperationException("tail on empty list")
   }
 
 }
